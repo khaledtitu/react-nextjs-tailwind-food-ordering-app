@@ -1,10 +1,9 @@
 'use client';
 import { useState } from "react";
-import { Hero, CustomButton } from "@/components";
+import { Hero, CustomButton, GridCard, ListCard } from "@/components";
+import { foodCategory } from "@/constants"
 
 const ButtonStyle = "text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
-
-
 export default function Home() {
   const [isGridViewVisible, setGridViewVisible] = useState(true);
   const [isListViewVisible, setListViewVisible] = useState(false);
@@ -45,9 +44,9 @@ export default function Home() {
             </div>
         </form>
       </div>
-
-      <div className="container mx-auto py-6">
+      <div className="container mx-auto ">
         <div className="px-10">
+            <h2 className="px-5 py-5 font-bold text-[32px] text-center">You can Select from our large Food Categories  </h2>
             <div className="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
                 <button onClick={() => toggleView('gridDiv')}
                     className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 toogle-button active"
@@ -60,7 +59,7 @@ export default function Home() {
                         <rect x="14" y="14" width="7" height="7"></rect>
                         <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
-                    <span>Grid</span>
+                    <span>Grid View</span>
                 </button>
                 <button onClick={() => toggleView('listDiv')}
                     className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2 toogle-button"
@@ -75,67 +74,49 @@ export default function Home() {
                         <line x1="3" y1="12" x2="3.01" y2="12"></line>
                         <line x1="3" y1="18" x2="3.01" y2="18"></line>
                     </svg>
-                    <span>List</span>
+                    <span>List View</span>
                 </button>
             </div>
         </div>
-        {isGridViewVisible? (
-            <div className="px-10" id="gridDiv">
-              <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
-                      <div
-                          className="my-8 rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 bg-white dark:bg-gray-800 duration-300 hover:-translate-y-1">
-                          <a href="/" className="cursor-pointer">
-                              <figure>
-                                  <img src="https://flowbite.com/docs/images/blog/image-4.jpg"
-                                      className="rounded-t h-72 w-full object-cover" />
-                                  <figcaption className="p-4">
-                                      <p className="text-lg mb-4 font-bold leading-relaxed text-gray-800 dark:text-gray-300">
-                                          Noteworthy technology acquisitions 2021
-                                      </p>
-                                      <small className="leading-5 text-gray-500 dark:text-gray-400">
-                                          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                                      </small>
-                                  </figcaption>
-                              </figure>
-                          </a>
-                      </div>
-              </div>
-          </div>
-        ): ""}
 
-      {isListViewVisible? (
-          <div className="px-10" id="listDiv">
-                <div
-                    className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-                        <div
-                            className="my-8 rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 bg-white dark:bg-gray-800 duration-300 hover:-translate-y-1">
-                            <a href="/" className="cursor-pointer">
-                                <figure>
-                                    <div
-                                        className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                                        <img src="https://flowbite.com/docs/images/blog/image-4.jpg"
-                                            className="h-[250px] w-full col-span-1 " />
-    
-                                        <figcaption className="p-4 col-span-3">
-                                            <p className="text-lg mb-4 font-bold leading-relaxed text-gray-800 dark:text-gray-300">
-                                                text
-                                            </p>
-                                            <small className="leading-5 text-gray-500 dark:text-gray-400">
-                                                Description 
-                                            </small>
-                                        </figcaption>
-                                    </div>
-                                </figure>
-                            </a>
-                      </div>
+        {isGridViewVisible ? (
+            <>
+            <div className="px-10" id="gridDiv">
+                <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 ">
+                    {foodCategory.map((food) => (
+                        <GridCard
+                            key={food._id} 
+                            title={food.title}
+                            image={food.img_menu}
+                            description={food.description}
+                            url="/"
+                        />
+                            
+                    ))}
                 </div>
             </div>
-            
+
+        </>
+        ) : (
+        ""
+        )}
+      {isListViewVisible? (
+            <div className="px-10" id="listDiv">
+            <div
+                className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
+                    {foodCategory.map((food) => (
+                        <ListCard
+                            key={food._id} 
+                            title={food.title}
+                            image={food.img_menu}
+                            description={food.description}
+                            url="/"
+                        /> 
+                    ))}
+                </div>
+        </div>
       ) : ""}
-
-
     </div>
-
     </main>
   );
 }

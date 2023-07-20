@@ -26,6 +26,13 @@ export interface CustomButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
+export interface GridListProps{
+  image?: string;
+  title: string;
+  description: string;
+  url?: string;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
+}
 
 
 export interface CustomFilterProps {

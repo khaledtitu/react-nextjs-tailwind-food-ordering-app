@@ -4,6 +4,8 @@ import CustomFilter from "./CustomFilter";
 import Footer from "./Footer";
 import NavBar from "./Navbar";
 import Hero from "./Hero";
+import GridCard from "./GridCard";
+import ListCard from "./ListCard";
 
 export {
   Hero,
@@ -11,4 +13,6 @@ export {
   CustomFilter,
   Footer,
   NavBar,
+  GridCard,
+  ListCard
 };
