@@ -17,6 +17,7 @@ export interface FilterProps {
 
 export interface CustomButtonProps {
   isDisabled?: boolean;
+  isSpan?: boolean;
   btnType?: "button" | "submit";
   containerStyles?: string;
   textStyles?: string;
