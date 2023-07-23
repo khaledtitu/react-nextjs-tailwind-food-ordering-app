@@ -26,15 +26,13 @@ export interface CustomButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface GridListProps{
-  image?: string;
+export interface Food{
+  img_menu?: string;
   title: string;
   description: string;
   url?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
-
-
 export interface CustomFilterProps {
   title: string;
   options: OptionProps[];

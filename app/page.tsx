@@ -81,40 +81,17 @@ export default function Home() {
 
         {isGridViewVisible ? (
             <>
-            <div className="px-10" id="gridDiv">
-                <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 ">
-                    {foodCategory.map((food) => (
-                        <GridCard
-                            key={food._id} 
-                            title={food.title}
-                            image={food.img_menu}
-                            description={food.description}
-                            url="/"
-                        />
-                            
-                    ))}
-                </div>
-            </div>
-
+              <GridCard
+                foodCategory={foodCategory}
+              />   
         </>
         ) : (
         ""
         )}
       {isListViewVisible? (
-            <div className="px-10" id="listDiv">
-            <div
-                className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-                    {foodCategory.map((food) => (
-                        <ListCard
-                            key={food._id} 
-                            title={food.title}
-                            image={food.img_menu}
-                            description={food.description}
-                            url="/"
-                        /> 
-                    ))}
-                </div>
-        </div>
+            <ListCard
+            foodCategory={foodCategory}
+            /> 
       ) : ""}
     </div>
     </main>
